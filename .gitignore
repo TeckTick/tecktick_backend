@@ -1,2 +1,6 @@
 # prevent venv folder from being pushed to git
 venv/
+./venv
+venv 
+.venv
+/venv

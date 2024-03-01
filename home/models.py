@@ -21,5 +21,5 @@ class Team(models.Model):
     role= models.CharField(max_length=250)
     image = models.ImageField(upload_to='home/media/team', null=True, blank=True)
 
-def __str__ (self):
+    def __str__ (self):
         return self.fullname

@@ -3,8 +3,8 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
 from rest_framework.views import APIView
-from .serializers import PartnerSerializer, TestimonialSerializer
-from .models import Partner, Testimonial
+from .serializers import PartnerSerializer, TestimonialSerializer, TeamSerializer
+from .models import Partner, Testimonial,Team
 from rest_framework.response import Response
 from rest_framework import status
 from .utils import get_partner_by_pk
@@ -82,3 +82,36 @@ class ListTestimonialsById(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 
+# Team views
+class TeamList(APIView):
+    def get(self, request):
+        team = Team.objects.all()
+        serializer = TeamSerializer(team, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def post(self, request):
+        serializer = TeamSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class ListTeamById(APIView):
+    def get(self, request, pk):
+        team = get_object_or_404(Team, pk=pk)
+        serializer = TeamSerializer(team)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def put(self, request, pk):
+        team = get_object_or_404(Team, pk=pk)
+        serializer = TeamSerializer(team, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, pk):
+        team = get_object_or_404(Team, pk=pk)
+        team.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

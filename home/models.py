@@ -11,7 +11,7 @@ class Partner(models.Model):
 class Testimonial(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to="home/media/testimonials", blank=True, null=True, default="home/media/testimonials/Avatar.png")
+    image = models.ImageField(upload_to="home/media/testimonials", blank=True, null=True, default="home/media/testimonials/default.png")
 
     def __str__ (self):
         return self.title

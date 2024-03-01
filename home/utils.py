@@ -2,7 +2,7 @@ from .models import Team
 from rest_framework.response import Response
 from rest_framework import status
 
-def get_partner_by_pk(pk):
+def get_team_by_pk(pk):
     try:
         team = Team.objects.get(pk=pk)
         return team

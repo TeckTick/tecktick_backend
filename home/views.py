@@ -6,7 +6,7 @@ from .serializers import TeamSerializer
 from .models import Team
 from rest_framework.response import Response
 from rest_framework import status
-from .utils import get_partner_by_pk
+from .utils import get_team_by_pk
 
 class TeamList(APIView):
     def get(self, request):

@@ -16,6 +16,11 @@ This is the backend for the Tecktick project. It is a RESTful API built with dja
             |
             (...) (other apps)
 
+## Endpoints
+    /resources/ - GET, POST 
+
+    /resources/<int:pk>/ - GET, PUT, DELETE
+
 ## Installation
 
 1. Clone the repository

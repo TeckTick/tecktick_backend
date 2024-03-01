@@ -73,8 +73,7 @@ class DeletePartners(APIView):
 
 
 # Testimonial views
-
-class Testimonials(APIView):
+class TestimonialList(APIView):
     def get(self, request):
         testimonials = Testimonial.objects.all()
         serializer = TestimonialSerializer(testimonials, many=True)
@@ -87,7 +86,8 @@ class Testimonials(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class Testimonial(APIView):
+
+class ListTestimonialsById(APIView):
     def get(self, request, pk):
         testimonial = get_object_or_404(Testimonial, pk=pk)
         serializer = TestimonialSerializer(testimonial)
@@ -105,3 +105,4 @@ class Testimonial(APIView):
         testimonial = get_object_or_404(Testimonial, pk=pk)
         testimonial.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    

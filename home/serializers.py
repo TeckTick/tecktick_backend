@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Partner
+from .models import Partner, Testimonial
 
 class PartnerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,5 +8,5 @@ class PartnerSerializer(serializers.ModelSerializer):
 
 class TestimonialSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Partner
+        model = Testimonial
         fields = "__all__"

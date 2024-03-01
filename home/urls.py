@@ -1,7 +1,5 @@
 from django.urls import path
 from . import views
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     # path('', home, name='home'),
@@ -13,6 +11,6 @@ urlpatterns = [
 
     # testimonial routes
 
-    path('testimonials/', views.Testimonials.as_view()),
-    path('testimonials/<int:pk>/', views.Testimonial.as_view()),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('testimonials/', views.TestimonialList.as_view(), name='testimonials'),
+    path('testimonials/<int:pk>/', views.ListTestimonialsById.as_view(), name='list-testimonials-by-id'),
+] 

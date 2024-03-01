@@ -8,5 +8,10 @@ urlpatterns = [
     path('partners/<int:pk>/delete/', views.DeletePartners.as_view(), name='delete-partner'),
     path('partners/new/', views.PostPartners.as_view(), name='create-partner'),
     path('partners/', views.ListPartners.as_view(), name='list-partners'),
+
+    # testimonial routes
+
+    path('testimonials/', views.Testimonials.as_view()),
+    path('testimonials/<int:pk>/', views.Testimonial.as_view()),
 ]
 

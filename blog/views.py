@@ -14,7 +14,7 @@ from rest_framework import status
 
 #  Comment views
 class CommentList(APIView):
-    def get(self, request):
+    def get(self, request, pk):
 
         # sample object with comments 
 

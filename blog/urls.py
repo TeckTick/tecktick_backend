@@ -3,12 +3,12 @@ from . import views
 
 urlpatterns = [
     # blog routes
-    # path('blogs/', views.BlogList.as_view()),
-    # path('blogs/<int:pk>/', views.ListBlogById.as_view()),
+    # path('articles', views.BlogList.as_view()),
+    # path('articles/<int:pk>/', views.ListBlogById.as_view()),
 
 
 
     # comment routes
-    path('comments/', views.CommentList.as_view()),
+    path('articles/<int:pk>/comments/', views.CommentList.as_view()),
    
 ] 

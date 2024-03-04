@@ -14,7 +14,7 @@ class Blog(models.Model):
     blog_article = models.TextField()
     profile_picture = models.ImageField(upload_to="blog/media", blank=True, null=True)
     category= models.CharField(max_length=100)
-    createdat= models.DateTimeField()
+    created_at= models.DateTimeField()
     
     def __str__ (self):
         return self.username

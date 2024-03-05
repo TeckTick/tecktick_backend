@@ -1,36 +1,46 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
-from rest_framework.decorators import api_view
-from .serializers import CommentSerializer
+# from django.shortcuts import render, get_object_or_404
+# from django.http import JsonResponse
+# from rest_framework.decorators import api_view
+
 from rest_framework.views import APIView
-from .models import Comment
+from .serializers import BlogSerializer
+from .models import Blog
 from rest_framework.response import Response
 from rest_framework import status
+from .utils import get_partner_by_pk
+# Create your views here.
 
 
+# Blog views
+class BlogList(APIView):
+    def get(self, request):
+        blog = Blog.objects.all()
+        serializer = BlogSerializer(blog, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def post(self, request):
+        serializer = BlogSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 
-
-
-
-#  Comment views
-class CommentList(APIView):
+class ListBlogById(APIView):
     def get(self, request, pk):
-
-        # sample object with comments 
-
-        comments = [
-            {
-                "id": 1,
-                "body": "This is a comment",
-                "created_on": "2021-08-02T08:00:00Z"
-            },
-            {
-                "id": 2,
-                "body": "This is another comment",
-                "created_on": "2021-08-02T08:00:00Z"
-            }
-
-
-        ]
-
-        return JsonResponse(comments, safe=False)
+        blog = get_partner_by_pk(pk)
+        serializer = BlogSerializer(blog)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def put(self, request, pk):
+        blog = get_partner_by_pk(pk)
+        serializer = BlogSerializer(blog, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, pk):
+        blog = get_partner_by_pk(pk)
+        blog.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

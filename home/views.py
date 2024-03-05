@@ -28,12 +28,12 @@ class PartnerList(APIView):
 
 class ListPartnersById(APIView):
     def get(self, request, pk):
-        partner = get_partner_by_pk(pk)
+        partner = get_object_or_404(Partner, pk=pk)
         serializer = PartnerSerializer(partner)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     def put(self, request, pk):
-        partner = get_partner_by_pk(pk)
+        partner = get_object_or_404(Partner, pk=pk)
         serializer = PartnerSerializer(partner, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -41,7 +41,7 @@ class ListPartnersById(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def delete(self, request, pk):
-        partner = get_partner_by_pk(pk)
+        partner = get_object_or_404(Partner, pk=pk)
         partner.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     

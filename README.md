@@ -17,10 +17,11 @@ This is the backend for the Tecktick project. It is a RESTful API built with dja
             (...) (other apps)
 
 ## Endpoints
+     Base URL: /api/
 
-    /resources/ - GET, POST 
+        /resources/ - GET, POST 
 
-    /resources/<int:pk>/ - GET, PUT, DELETE
+        /resources/<int:pk>/ - GET, PUT, DELETE
 
 ## Installation
 
@@ -53,7 +54,16 @@ This is the backend for the Tecktick project. It is a RESTful API built with dja
     
     ```bash
     python manage.py runserver
+
     ```
+5. Visit the server in your browser
+
+    ```bash
+    http:localhost:8000
+    ```
+
+    This will take you to swagger ui where you can test the endpoints
+
 
 ## Pushing to the repository
 

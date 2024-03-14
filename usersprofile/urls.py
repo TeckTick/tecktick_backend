@@ -8,7 +8,7 @@ router.register(r'login', views.LoginViewSet, basename='login')
 router.register(r'logout', views.LogoutViewSet, basename='logout')
 
 urlpatterns = [
-    path('profile/', views.UpdateProfileViewSet.as_view(), name='update_profile'),
+    path('profile/', views.UpdateProfileViewSet.as_view(), name='profile'),
 ] + router.urls
 # urlpatterns = router.urls
 

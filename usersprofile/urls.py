@@ -6,10 +6,11 @@ router = DefaultRouter()
 router.register(r'register', views.RegisterViewSet, basename='register')
 router.register(r'login', views.LoginViewSet, basename='login')
 router.register(r'logout', views.LogoutViewSet, basename='logout')
-router.register(r'profile', views.ProfileViewSet, basename='profile')
-router.register(r'update_profile', views.UpdateProfileViewSet, basename='update_profile')
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('profile/', views.UpdateProfileViewSet.as_view(), name='update_profile'),
+] + router.urls
+# urlpatterns = router.urls
 
 
 # urlpatterns = [

@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate, login, logout
+from rest_framework.generics import RetrieveUpdateAPIView
 from .serializers import UserSerializer
 from .models import CustomUser 
 
@@ -30,27 +31,14 @@ class LogoutViewSet(viewsets.ViewSet):
 
     def create(self, request):
         logout(request)
-        return Response({'message': 'Logout successful'}, status=status.HTTP_200_OK)
+        return Response({'message': 'Logout successful'}, status=status.HTTP_200_OK) 
 
-class ProfileViewSet(viewsets.ModelViewSet):
+class UpdateProfileViewSet(RetrieveUpdateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = UserSerializer
 
-    def get_queryset(self):
-        return CustomUser.objects.filter(id=self.request.user.id)
-
-    def perform_update(self, serializer):
-        serializer.save()
-
-class UpdateProfileViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    serializer_class = UserSerializer
-
-    def get_queryset(self):
-        return CustomUser.objects.filter(id=self.request.user.id)
-
-    def perform_update(self, serializer):
-        serializer.save()
+    def get_object(self):
+        return self.request.user
 
     
     

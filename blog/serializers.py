@@ -1,8 +1,13 @@
 from rest_framework import serializers
-from .models import Blog, Reply, Comment
+from .models import Blog, Reply, Comment, Category
 
+class CategorySerializer(serializers.ModelSerializer):
+   class Meta:
+      model =  Category
+      fields = "__all__"
 
 class BlogSerializer(serializers.ModelSerializer):
+   category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())  # Use PrimaryKeyRelatedField for dropdown list
    class Meta:  
       model = Blog
       fields = "__all__"

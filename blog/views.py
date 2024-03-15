@@ -1,7 +1,11 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
-from .models import Blog, Comment, Reply
-from .serializers import BlogSerializer, CommentSerializer, ReplySerializer
+from .models import Blog, Comment, Reply, Category
+from .serializers import BlogSerializer, CommentSerializer, ReplySerializer, CategorySerializer
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 class BlogViewSet(viewsets.ModelViewSet):
     queryset = Blog.objects.all()
@@ -26,7 +30,6 @@ class ReplyViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
 
 
 # Create your views here.

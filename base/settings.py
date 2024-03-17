@@ -32,9 +32,9 @@ MEDIA_URL = ""
 SECRET_KEY = 'django-insecure-m2j&#^&@9fz=p52&3ig-^$9(+s6n2-ft=hvn&)mbrad3)oj8!c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tecktick-backend.onrender.com', 'localhost', ]
 
 
 # Application definition
